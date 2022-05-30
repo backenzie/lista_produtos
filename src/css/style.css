@@ -20,15 +20,12 @@ body {
     font-size: 0.9rem;
 }
 
-.estiloGeralBotoes--mostrarTodos {
+#AAA{
+    border: 1px solid red;
     color: black;
     background-color: #d3d3d3;
 }
 
-.estiloGeralBotoes--filtrarHortifruti {
-    background-color: tomato;
-    color: white;
-}
 
 .containerBuscaPorNome {
     display: flex;
@@ -48,12 +45,15 @@ body {
 }
 
 /* CONTEÚDO */
-main{}
+main{
+    
+}
 
 .containerListaProdutos {
     width: 100%;
     max-width: 800px;
     margin: 0 auto;
+    
 }
 
 .containerListaProdutos ul {
@@ -61,6 +61,7 @@ main{}
     text-align: center;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .containerListaProdutos ul li {

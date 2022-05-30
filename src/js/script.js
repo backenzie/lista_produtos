@@ -102,6 +102,7 @@ function newFunc4(){
 }
 
 
+
 const buttonTodos        = document.querySelector(".estiloGeralBotoes--mostrarTodos")
 const buttonHortifruti   = document.querySelector(".estiloGeralBotoes--filtrarHortifruti")
 const buttonLacticinios  = document.querySelector(".estiloGeralBotoes--filtrarLaticinio")
@@ -111,5 +112,34 @@ buttonTodos.addEventListener("click", newFunc4)
 buttonHortifruti.addEventListener("click", newFunc1)
 buttonLacticinios.addEventListener("click", newFunc3)
 buttonPanific.addEventListener("click", newFunc2)
+
+//** Sessão do filtro da pesquisa */
+
+const input = document.querySelector("input")
+input.addEventListener("input", pesquisa)
+
+function pesquisa(){
+    const ul     = document.querySelector("ul")
+    ul.innerHTML = ""
+    const arr = buscaAlgo()
+    produtosSec(arr)  
+}
+
+function buscaAlgo(){
+    const result = produtos.filter(produto => produto.nome.toLowerCase().includes(input.value.toLowerCase()))
+    return result
+}
+
+//** SOMA */
+
+function soma(){
+    let total = 0
+    for(let i=0; i<produtos.length;i++){
+        total+= produtos[i].preco
+    }
+    return total  
+}
+const spanTotal = document.querySelector("#precoTotal")
+spanTotal.innerText = soma()
 
 //** */
