@@ -1,45 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./src/css/reset.css">
     <link rel="stylesheet" href="./src/css/style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
     <title>Lista de Produtos</title>
 </head>
+
 <body>
 
-    <!-- CABEÇALHO -->
     <header>
         <div id="filters" class="filtersContainer">
-            
-            <button class="estiloGeralBotoes estiloGeralBotoes--mostrarTodos" id="AAA">Mostrar Todos</button>
-            <button class="estiloGeralBotoes estiloGeralBotoes--filtrarHortifruti" id="AAA">Mostrar Hortifruti</button>
-            <button class="estiloGeralBotoes estiloGeralBotoes--filtrarPanificadora" id="AAA">Mostrar Panificadora</button>
-            <button class="estiloGeralBotoes estiloGeralBotoes--filtrarLaticinio" id="AAA">Mostrar Laticinio</button>
+
+            <button class="estiloGeralBotoes estiloGeralBotoes--mostrarTodos" id="AA1">Mostrar Todos</button>
+            <button class="estiloGeralBotoes estiloGeralBotoes--filtrarHortifruti" id="AA2">Mostrar Hortifruti</button>
+            <button class="estiloGeralBotoes estiloGeralBotoes--filtrarPanificadora" id="AA3">Mostrar
+                Panificadora</button>
+            <button class="estiloGeralBotoes estiloGeralBotoes--filtrarLaticinio" id="AA4">Mostrar Laticinio</button>
 
             <div class="containerBuscaPorNome">
-                
+
                 <input type="text" placeholder="Nome do produto" class="campoBuscaPorNome">
                 <button class="estiloGeralBotoes estiloGeralBotoes--botaoBuscaPorNome">Buscar</button>
 
             </div>
         </div>
     </header>
-    
-    <main>
-        <div class="containerListaProdutos" id="listProdutos">
-            <ul>
-            </ul>
-        </div>
 
-        <div class="containerPrecoTotal">
-            <p>Preço total: R$<span id="precoTotal">00.00</span></p>
-        </div>
+    <main>
+
+        <ul class="ulVitrine">
+        </ul>
+
+        <aside class="criarCarrinho">
+            <div id="headerCarrinho">
+                <img id="imgCarrinho" src="./src/img/.png" alt="icone Lixeira">
+                <h1>Carrinho</h1>
+            </div>
+            <div>
+                <ul id="abc">
+                </ul>
+            </div>
+            <div id="containerQuantidade">
+                <p>Quantidade</p><span id="quantidade">--</span>
+            </div>
+            <div id="containerPreco">
+                <p>Preço total: R$</p><span id="precoTotal">00.00</span>
+            </div>
+        </aside>
+
     </main>
 
     <script src="src/js/dataProdutos.js"></script>
     <script src="src/js/script.js"></script>
 </body>
+
 </html>
