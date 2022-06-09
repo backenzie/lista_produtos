@@ -7,12 +7,14 @@ const input = document.querySelector("input")
 const ul    = document.querySelector(".ulVitrine")
 const ulCarrinho = document.querySelector("#abc")
 
-function criarCardCarrinho (produs){
+
+let carrinho = []
+
+function criarCardCarrinho (){
     ulCarrinho.innerHTML = ""
-   
-    produs.forEach((produto)=>{
+    carrinho.forEach((produto) => {
         const li  = document.createElement("li")
-        li.id     = "liCarrinho"
+        li.id = "liCarrinho"
         
         const img = document.createElement("img")
         const divImgCarrinho = document.createElement("div")
@@ -33,8 +35,11 @@ function criarCardCarrinho (produs){
         
         const divImgLixo = document.createElement("div")
         divImgLixo.id    = "divImgLixo"
+        divImgLixo.addEventListener("click", removeCarrinho)
+
         const a     = document.createElement("a")
         a.id        = "aImg"
+
         const imgLixo    = document.createElement("img")
         imgLixo.alt      = "icon lixo"
         imgLixo.src      = "./src/img/trash.png"
@@ -46,11 +51,8 @@ function criarCardCarrinho (produs){
         divH1SpanPreco.append(h1, span, pPreco)
         li.append(divImgCarrinho, divH1SpanPreco, divImgLixo,)
         ulCarrinho.append(li)
-        
-    })
+        })
 }
-
-
 
 function criarCard(produs) {
     ul.innerHTML = ""
@@ -86,7 +88,8 @@ function criarCard(produs) {
     button.innerText = "Comprar"
     button.type = "button"
     button.addEventListener("click", ()=>{
-        criarCardCarrinho(produtos)
+        carrinho.push(produto)
+        criarCardCarrinho()
     })
     
     const para = document.createElement("p")
@@ -107,6 +110,9 @@ function criarCard(produs) {
 })}
 
 criarCard(produtos)
+function removeCarrinho (){
+   return carrinho.slice(0,1)
+}
 //** FILTROS BOTÕES */
 
 function filtroGeral(){
@@ -133,12 +139,19 @@ function filtroLati(){
 }
 
 function pesquisa(){
-    const arr = buscaAlgo()
-    criarCard(arr)  
+    const nome  = buscaNome()
+    const secao = buscaSecao() 
+    criarCard(nome)
+    criarCard(secao) 
 }
-
-function buscaAlgo(){
-    const result = produtos.filter(produto => produto.nome.toLowerCase().includes(input.value.toLowerCase()))
+function buscaSecao(){
+    const result = produtos.filter(produto => 
+        produto.secao.toLowerCase().includes(input.value.toLowerCase()))
+    return result
+}
+function buscaNome(){
+    const result = produtos.filter(produto => 
+        produto.nome.toLowerCase().includes(input.value.toLowerCase()))
     return result
 }
 
@@ -150,14 +163,11 @@ input.addEventListener("input", pesquisa)
 
 
 
+
 //** SOMA */
 
 function soma(){
-    let total = 0
-    for(let i=0; i<produtos.length;i++){
-        total+= produtos[i].preco
-    }
-    return total  
+    carrinho.reduce((previousValue, currentValue) => {previousValue + currentValue }, 0)
 }
 const spanTotal = document.querySelector("#precoTotal")
 spanTotal.innerText = soma()
