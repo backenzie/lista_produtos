@@ -3,9 +3,11 @@ const buttonTodos        = document.querySelector(".estiloGeralBotoes--mostrarTo
 const buttonHortifruti   = document.querySelector(".estiloGeralBotoes--filtrarHortifruti")
 const buttonLacticinios  = document.querySelector(".estiloGeralBotoes--filtrarLaticinio")
 const buttonPanific      = document.querySelector(".estiloGeralBotoes--filtrarPanificadora")
-const input = document.querySelector("input")
-const ul    = document.querySelector(".ulVitrine")
-const ulCarrinho = document.querySelector("#abc")
+const preco              = document.querySelector("#precoTotal")
+const qtd                = document.querySelector("#quantidade")
+const input              = document.querySelector("input")
+const ul                 = document.querySelector(".ulVitrine")
+const ulCarrinho         = document.querySelector("#abc")
 
 
 let carrinho = []
@@ -35,7 +37,13 @@ function criarCardCarrinho (){
         
         const divImgLixo = document.createElement("div")
         divImgLixo.id    = "divImgLixo"
-        divImgLixo.addEventListener("click", removeCarrinho)
+        divImgLixo.addEventListener("click", () => {
+            const index = carrinho.indexOf(produto)
+            carrinho.splice(index, 1)
+            criarCardCarrinho()
+            totalQtd()
+        })
+        
 
         const a     = document.createElement("a")
         a.id        = "aImg"
@@ -90,6 +98,7 @@ function criarCard(produs) {
     button.addEventListener("click", ()=>{
         carrinho.push(produto)
         criarCardCarrinho()
+        totalQtd()
     })
     
     const para = document.createElement("p")
@@ -110,9 +119,12 @@ function criarCard(produs) {
 })}
 
 criarCard(produtos)
-function removeCarrinho (){
-   return carrinho.slice(0,1)
+const totalQtd = () => {
+qtd.innerText   = carrinho.length
+preco.innerText = carrinho.reduce( (a,b) => a + b.preco, 0)
 }
+
+
 //** FILTROS BOTÕES */
 
 function filtroGeral(){
@@ -161,18 +173,6 @@ buttonLacticinios.addEventListener("click", filtroLati)
 buttonPanific.addEventListener("click",filtroPani)
 input.addEventListener("input", pesquisa)
 
-
-
-
-//** SOMA */
-
-function soma(){
-    carrinho.reduce((previousValue, currentValue) => {previousValue + currentValue }, 0)
-}
-const spanTotal = document.querySelector("#precoTotal")
-spanTotal.innerText = soma()
-
-//** */
   
  
 
